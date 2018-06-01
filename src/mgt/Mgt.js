@@ -1,15 +1,30 @@
 import React, { Component } from 'react'
 import AoCalendar from './component/AoCalendar'
+import DayPage from './component/DayPage'
 
-
-function onPanelChange(value, mode) {
-    console.log(value, mode);
-}
 
 class Mgt extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            dispayMode: "index"                
+        }
+        this.setMgtDispay =  this.setMgtDispay.bind(this)
+    }
 
+    setMgtDispay(mode) {
+        this.setState({
+            dispayMode: mode
+        })
+    }
+    
      render() {
-        return (<AoCalendar />)
+        if(this.state.dispayMode == "index") {
+            return (<AoCalendar setMgtDispay={this.setMgtDispay}/>)
+        }
+        else {
+            return (<DayPage />)
+        }
      }
 }
 

@@ -17,10 +17,12 @@ class PostTitle extends Component {
             title: props.title,
             count: 0
         }
+        this.titleClick = this.titleClick.bind(this)
     }
 
     titleClick(e) {
         // alert("1")
+        e.stopPropagation()
         this.state.count++
         console.log(e)
         this.setState({
@@ -29,7 +31,7 @@ class PostTitle extends Component {
     }
 
     render() {
-        return (<Li onClick={this.titleClick.bind(this)} >{this.state.title}</Li>)        
+        return (<Li onClick={this.titleClick} >{this.state.title}</Li>)        
     }
     
 }

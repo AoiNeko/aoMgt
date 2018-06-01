@@ -3,9 +3,7 @@ import PostTitle from './blog/PostTitle'
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-function onPanelChange(value, mode) {
-    console.log(value, mode);
-}
+
 
 const Ul = styled.ul`
   margin-left: 0em;
@@ -22,8 +20,19 @@ function dateCellRender(value) {
 }
 
 class AoCalendar extends Component {
+    constructor(props) {
+        super(props)
+        this.onSelect = this.onSelect.bind(this)
+        
+    }
+
+    onSelect(value, mode) {
+        this.props.setMgtDispay("dayPage")
+        console.log(value, mode);
+    }
+
     render() {
-       return (<Calendar dateCellRender={dateCellRender} onPanelChange={onPanelChange}/>)
+       return (<Calendar dateCellRender={dateCellRender} onSelect={this.onSelect}/>)
     }
 
 }
