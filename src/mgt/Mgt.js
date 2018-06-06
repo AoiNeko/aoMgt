@@ -13,6 +13,7 @@ class Mgt extends Component {
     }
 
     setMgtDispay(mode) {
+        alert("set" + mode)
         this.setState({
             dispayMode: mode
         })
@@ -23,7 +24,7 @@ class Mgt extends Component {
             return (<AoCalendar setMgtDispay={this.setMgtDispay}/>)
         }
         else {
-            return (<DayPage />)
+            return (<DayPage setMgtDispay={this.setMgtDispay}/>)
         }
      }
 }
