@@ -23,10 +23,12 @@ class PostTitle extends Component {
     titleClick(e) {
         // alert("1")
         e.stopPropagation()
-        this.state.count++
+        
         console.log(e)
+        let increCount = this.state.count + 1
         this.setState({
-            title: '点了' + this.state.count
+            count: increCount,
+            title: '点了' + increCount
         })
     }
 

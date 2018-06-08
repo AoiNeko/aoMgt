@@ -11,10 +11,10 @@ const Ul = styled.ul`
 `
 
 function dateCellRender(value) {
-    let dateData = [{title: "biaoti"}, {title: "我哦啊后ID骄傲囧"}]
+    let dateData = [{title: "biaoti", key:"1"}, {title: "我哦啊后ID骄傲囧", key:"2"}]
     return (
         <Ul>{
-            dateData.map (data => (<PostTitle title={data.title} />))
+            dateData.map (data => (<PostTitle key={data.key} title={data.title} />))
         }</Ul>
     )
 }
@@ -26,9 +26,11 @@ class AoCalendar extends Component {
         
     }
 
-    onSelect(value, mode) {
-        this.props.setMgtDispay("dayPage")
-        console.log(value, mode);
+    onSelect(value) {
+        // this.props.setMgtDispay("dayPage", value)
+        console.log(this.props);
+        this.props.history.push("/day/" + value)
+
     }
 
     render() {

@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import './App.css';
 import  Mgt  from './mgt/Mgt'
 
+
+
 class App extends Component {
   render() {
     return (
-      <Mgt />
+    <Mgt />  
     )
   }
 }
