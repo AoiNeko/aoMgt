@@ -15,12 +15,12 @@ class PostList extends Component {
 
     constructor(props) {
         super(props)
-        this.postClick = this.postClick.bind(this)
+        this.postClick = this.postClick.bind(this)  
     }
 
-    postClick() {
-        console.log("post click")
-        
+    postClick(item) {
+        console.log( item)
+        this.props.history.push("/post/"+item.id)
     }
 
     render() {
@@ -30,7 +30,7 @@ class PostList extends Component {
             // footer={<div>footer</div>}
             renderItem={
                 item => (
-                <List.Item onClick={this.postClick}>
+                <List.Item onClick={this.postClick.bind(null, item)}>
                 <List.Item.Meta
                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                     title={<a href="https://ant.design">{item.title}</a>}
@@ -41,8 +41,6 @@ class PostList extends Component {
                 )
             }
             ></List>
-            <Route path="/post/:id" component={Post}/>
-            
             </Div>)
     }
 }

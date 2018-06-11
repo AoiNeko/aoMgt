@@ -16,18 +16,19 @@ class DayPage extends Component {
         this.props.history.push("/")
     }
 
-    getDayContent(date) {
+    getDayContent() {
+        const {date}  =  this.props.match.params
         return [{id: '1' ,title: "post1", abstract: "this is abstract of post 1"},
-        {id:'1', title: "post2", abstract: "this is abstract of post 2"}]
+        {id:'2', title: "post2", abstract: "this is abstract of post 2"}]
     }
 
     render() {
         const dayPosts = this.getDayContent(this.props.date)
 
         return (<Layout><Header> 
-                <Button type="primary" onClick={this.backToCalendar}>返回</Button>
+                <Button type="primary" onClick={this.backToCalendar}>首页</Button>
             </Header>
-            <Content><PostList postData={dayPosts}> </PostList></Content>
+            <Content><PostList postData={dayPosts}  history={this.props.history}> </PostList></Content>
             </Layout>)
     }
 }

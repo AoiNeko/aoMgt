@@ -10,19 +10,7 @@ import PostList from './component/blog/PostList';
 class Mgt extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            dispayMode: "index" ,
-            date: null             
-        }
-        this.setMgtDispay =  this.setMgtDispay.bind(this)
     }   
-
-    setMgtDispay(mode, value) {
-        this.setState({
-            dispayMode: mode,
-            date: value
-        }) 
-    }
     
      render() {
         return ( 
@@ -30,7 +18,7 @@ class Mgt extends Component {
             <Switch>    
                 <Route exact path="/" component={AoCalendar}/>
                 <Route path="/day/:date" component={DayPage}></Route>
-                <PostList match={{params: {id: 0}, url: ""}}></PostList>
+                <Route path="/post/:id" component={Post}/>
             </Switch>
             </Router>
         )
