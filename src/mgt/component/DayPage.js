@@ -10,6 +10,10 @@ class DayPage extends Component {
         super(props)
         this.backToCalendar = this.backToCalendar.bind(this)
         this.getDayContent = this.getDayContent.bind(this)
+        this.state = {
+            datePosts : []
+        }
+        this.getDayContent()
     }
 
     backToCalendar() {
@@ -18,17 +22,37 @@ class DayPage extends Component {
 
     getDayContent() {
         const {date}  =  this.props.match.params
-        return [{id: '1' ,title: "post1", abstract: "this is abstract of post 1"},
-        {id:'2', title: "post2", abstract: "this is abstract of post 2"}]
+        alert(date)
+            var myHeaders = new Headers()
+        myHeaders.append('Content-Type', 'application/json')
+        const option = {
+            method: 'GET',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default'
+        }
+        let _this = this
+        let tz = new Date().getTimezoneOffset() / 60 * -1
+        fetch('/post/day/list?t='+ date + '&tz=' + tz  ,option).then((response) => {
+            response.text().then((responseText) => {
+                console.log(responseText)
+                let res = JSON.parse(responseText)
+                console.log(res)
+                debugger
+                _this.setState({datePosts: res.result})
+            })
+        })
+
+    
     }
 
     render() {
-        const dayPosts = this.getDayContent(this.props.date)
+        // const dayPosts = this.getDayContent(this.props.date)
 
         return (<Layout><Header> 
                 <Button type="primary" onClick={this.backToCalendar}>首页</Button>
             </Header>
-            <Content><PostList postData={dayPosts}  history={this.props.history}> </PostList></Content>
+            <Content><PostList postData={this.state.datePosts}  history={this.props.history}> </PostList></Content>
             </Layout>)
     }
 }
